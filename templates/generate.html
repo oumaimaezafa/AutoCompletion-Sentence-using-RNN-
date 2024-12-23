@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sentence Autocompletion App</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f9;
+                color: #333;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            form {
+                background-color: #ffffff;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 400px;
+                text-align: center;
+            }
+
+            input[type="text"], 
+            input[type="number"] {
+                width: 90%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+
+            button {
+                background-color: #28a745;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            button:hover {
+                background-color: #218838;
+            }
+
+            .generated-text {
+                font-size: 16px;
+                color: #555;
+                margin-top: 20px;
+                text-align: center;
+                word-wrap: break-word;
+                max-width: 600px;
+                padding: 10px;
+                background-color: #f9f9f9;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+                color: #28a745;
+            }
+
+            .word {
+                font-weight: bold;
+                color: #007bff;
+                padding: 5px;
+            }
+
+        </style>
+    </head>
+    
+    <body>
+        <form name="form" action="/generate" method="POST">
+            <h1>Sentence Autocompletion App</h1>
+            <input type="text" id="text" name="Text" placeholder="Enter text" required/><br>
+            <input type="number" id="noOfWords" name="NoOfWords" placeholder="Enter the number of new words" required/><br>
+            
+            <button type="submit">Generate Text</button>
+        </form>
+
+        {% if output %}
+            <div class="generated-text">
+                <h2>Generated Sentence:</h2>
+                <p>
+                    {% for word in output.split() %}
+                        <span class="word">{{ word }}</span>
+                    {% endfor %}
+                </p>
+            </div>
+        {% endif %}
+    </body>
+</html>
